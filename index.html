@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="chrome=1, IE=9">
+        <meta name="viewport" content="initial-scale=1 maximum-scale=1 user-scalable=0 minimal-ui shrink-to-fit=no" />
+        <!--<script src="//cdn.jsdelivr.net/npm/phaser@3.51.0/dist/phaser.js"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser-arcade-physics.min.js"></script>
+        <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.6.0/stitch.js"></script>
+        <script src = "game.js"></script>   
+        <style>
+            #ishost {
+                position: absolute; 
+                background-color: cadetblue; 
+                color: white;
+                padding: 10px; 
+                bottom: 10px;
+                right: 10px;
+            }
+        </style>
+    </head>
+    <body style="margin: 0">
+        <div style="position: absoulte; background-color: azure; padding: 10px">
+            <div id="visitor"> 
+                <input id="gameid" type="text" placeholder="Game ID" value="jason23"/>
+                <button id="creategame" type="button" onClick="joinOrCreateGame()">Create / Join</button>
+            </div>
+            <div id="information" display="display: none">
+                Game ID:
+            </div>
+        </div>
+        <div id="ishost">
+            Not in a game...
+        </div>
+        <script>
+            const game = new Game({
+                "id": "game",
+                "width": window.innerWidth,
+                "height": window.innerHeight,
+                "realmAppId" : "tracer-dwscp",
+                "databaseName" : "Cluster0",
+                "collectionName" : "LoginCollections"
+            });  
+            const joinOrCreateGame = () => {
+                game.createOrJoin(document.getElementById("gameid").value);
+            }
+        </script>
+    </body>
+</html>
